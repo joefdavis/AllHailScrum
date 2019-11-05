@@ -1,0 +1,42 @@
+<!DOCTYPE hibernate-configuration PUBLIC 
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+	
+	<hibernate-configuration>
+	<session-factory>
+	
+		<property name="hibernate.connection.url">
+			jdbc:postgresql://database-1.cju3cri09bx7.us-east-1.rds.amazonaws.com:5432/postgres
+		</property>
+		<property name="hibernate.connection.username">
+			anasproject
+		</property>
+		<property name="hibernate.connection.password">
+			23164Bob!
+		</property>
+		<property name="hibernate.connection.Dialect">
+			org.hibernate.dialect.PostgreSQLDialect
+		</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		
+		
+		
+		<property name="hibernate.connection.pool_size">10</property>
+	
+		<property name="hibernate.connection.show_sql">true</property>
+		<property name="hibernate.connection.format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		
+		<mapping class = "pojo.Users"/>
+		<mapping class = "pojo.Posts"/>
+		<mapping class = "pojo.Comments"/>
+		<mapping class = "pojo.Likes"/>
+		<mapping class = "pojo.LikesC"/>
+	
+	
+	</session-factory>
+	
+	</hibernate-configuration>
+	
