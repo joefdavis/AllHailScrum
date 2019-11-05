@@ -1,7 +1,8 @@
 package com.project.controller;
 import java.util.List;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+
 
 import com.project.pojo.Users;
 @Controller
 @RequestMapping(value="/users")
 @CrossOrigin(origins="*")
 public class LoginController {
-//	static Logger logger = Logger.getLogger(LoginController.class);
+	private static final Logger LOGGER=LoggerFactory.getLogger(LoginController.class);
    
     private LoginService login;
     @GetMapping(value="getAll.app")
@@ -40,16 +40,13 @@ public class LoginController {
     /////////////////////////////////verify login/////////////////////////////////////////////////////
     @PostMapping(value="/login.app")
     public @ResponseBody Users getUserLogin(@RequestBody Users u) {
-//DOMConfigurator.configure("log4j.xml");
-   	    
-   	    //Log in console in and log file
-//   	    logger.debug("Log4j appender configuration is successful !!");
+
     	
         System.out.println(u);
         Users newu=null;
        newu=login.getUsernameValue(u.getUsername());
        if(u.getPassword().equals(newu.getPassword())) {
-    	   
+    	   LOGGER.info("we have a logger!!! and they are " + u.getUsername());
     	   return u;
        }
         return null;
