@@ -76,12 +76,12 @@ public class LoginController {
     }
     
     
-    
+    @Autowired
     public void setLogin(LoginService login) {
         this.login = login;
     }
     
-    @Autowired
+
     public LoginController() {
         System.out.println("controller");
     }

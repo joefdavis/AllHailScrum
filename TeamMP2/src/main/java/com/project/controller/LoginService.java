@@ -1,8 +1,12 @@
 package com.project.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.project.dao.UsersDao;
 import com.project.pojo.Users;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+@Service
 public class LoginService {
     
     
@@ -17,6 +21,8 @@ public class LoginService {
     }
     
     public void InsertUser(Users b) {
+    	System.out.println("service me mommy");
+    	System.out.println(b);
         br.InsertUserInfo(b); 
     }
     
