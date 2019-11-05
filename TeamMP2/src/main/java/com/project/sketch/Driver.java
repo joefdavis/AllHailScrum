@@ -23,13 +23,13 @@ public class Driver {
         
         
         
-        Users b1 = new Users("anathaboss", "man", "adrianalong@gmail.com", "I like eating cookies,"
+        Users b1 = new Users("bob", "the", "builder@gmail.com", "I like eating cookies,"
                 + "maaaaaaaaaaan", null, null);
         
         
         Users b2 = new Users("theD", "joe", "joe@gmail.com",null , null, null);
         
-      br.InsertUserInfo(b2);
+      br.InsertUserInfo(b1);
 //        br.UpdateUsername(b1);
         
         
