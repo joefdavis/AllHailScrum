@@ -21,7 +21,7 @@ import com.project.pojo.Users;
 @RequestMapping(value="/users")
 @CrossOrigin(origins="*")
 public class LoginController {
-	static Logger logger = Logger.getLogger(LoginController.class);
+//	static Logger logger = Logger.getLogger(LoginController.class);
    
     private LoginService login;
     @GetMapping(value="getAll.app")
@@ -40,16 +40,16 @@ public class LoginController {
     /////////////////////////////////verify login/////////////////////////////////////////////////////
     @PostMapping(value="/login.app")
     public @ResponseBody Users getUserLogin(@RequestBody Users u) {
+//DOMConfigurator.configure("log4j.xml");
+   	    
+   	    //Log in console in and log file
+//   	    logger.debug("Log4j appender configuration is successful !!");
     	
-    	 DOMConfigurator.configure("log4j.xml");
-    	    
-    	    //Log in console in and log file
-    	    logger.debug("Log4j appender configuration is successful !!");
         System.out.println(u);
         Users newu=null;
        newu=login.getUsernameValue(u.getUsername());
        if(u.getPassword().equals(newu.getPassword())) {
-    	  
+    	   
     	   return u;
        }
         return null;
@@ -80,6 +80,7 @@ public class LoginController {
     public void setLogin(LoginService login) {
         this.login = login;
     }
+    
     @Autowired
     public LoginController() {
         System.out.println("controller");
