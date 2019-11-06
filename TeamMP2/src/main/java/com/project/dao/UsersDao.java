@@ -132,7 +132,9 @@ public class UsersDao  {
     
     //get user by username
     public Users getUserByUsername(String name) {
+    	System.out.println("we in the dao");
         Session ses = sesFact.getCurrentSession();
+        System.out.println("we in teh dao bitchessss");
         return ses.createQuery("from Users where username like ?1 ", Users.class).setParameter(1, name).getSingleResult();
     }
     

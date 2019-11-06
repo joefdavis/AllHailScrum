@@ -20,43 +20,42 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table (name = "social_users")
 public class Users {
     
     
-    
+//    
     @Id
-//  @Generated(GenerationTime.INSERT)
-    @Column (name = "social_id", columnDefinition = "serial")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "social_id" , updatable = false, nullable = false)
+//
     private int id;
     
     
     
 //  @Id
 //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "social_username", unique=true)
+    @Column(name = "social_username", unique = true)
     private String username;
     
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "home",cascade = CascadeType.ALL, fetch=FetchType.LAZY )
     private Set<Posts> posts = new HashSet<>();
     
     
-    
+    @JsonIgnore
      @OneToMany(mappedBy = "likestousernamep",cascade = CascadeType.ALL, fetch=FetchType.LAZY )
      private Set<Likes> likes = new HashSet<>();
      
-     
-     
-     
+  
+    @JsonIgnore
      @OneToMany(mappedBy = "likescusers",cascade = CascadeType.ALL, fetch=FetchType.LAZY )
      private Set<LikesC> likec = new HashSet<>();
      
-        
-    
+ 
     
     @Column(name = "social_password")
     private String password;
@@ -83,8 +82,7 @@ public class Users {
 //  @Generated(GenerationTime.INSERT)
 //  private int id;
     
-    public Users() {
-        
+    public Users() {     
     }
     
     
@@ -101,12 +99,23 @@ public class Users {
     
     
     
+    
+    
+    
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public String toString() {
         return "Users [username=" + username + ", password=" + password + ", email=" + email + ", description="

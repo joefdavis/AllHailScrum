@@ -17,6 +17,8 @@ public class LoginService {
     }
     
     public Users getUsernameValue(String Username) {
+    	System.out.println("we in the service my money");
+    	System.out.println(Username);
         return br.getUsernameValue(Username);
     }
     

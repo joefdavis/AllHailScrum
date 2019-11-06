@@ -29,9 +29,9 @@ public class Driver {
         
         Users b2 = new Users("theD", "joe", "joe@gmail.com",null , null, null);
         
-      br.InsertUserInfo(b1);
+//      br.InsertUserInfo(b1);
 //        br.UpdateUsername(b1);
-        
+        System.out.println(br.getUsernameValue("joeyjoey"));
         
     
 }   

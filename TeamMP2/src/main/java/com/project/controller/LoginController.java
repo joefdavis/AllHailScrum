@@ -43,8 +43,9 @@ public class LoginController {
 
     	
         System.out.println(u);
-        Users newu=null;
-       newu=login.getUsernameValue(u.getUsername());
+       
+      Users newu=login.getUsernameValue(u.getUsername());
+       System.out.println("raptar motherrrr FUUUUUUU");
        if(u.getPassword().equals(newu.getPassword())) {
     	   LOGGER.info("we have a logger!!! and they are " + u.getUsername());
     	   return u;
