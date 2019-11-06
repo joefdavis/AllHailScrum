@@ -36,7 +36,7 @@ public class Users {
     
 //  @Id
 //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "social_username")
+    @Column(name = "social_username", unique=true)
     private String username;
     
     
