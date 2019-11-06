@@ -1,6 +1,5 @@
 package com.project.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
  
@@ -12,14 +11,12 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Configuration
 public class S3Config {
-	@Value("$AKIAVODOQPPGRZGE7CMG")
-	  private String awsId;
+
+	  private String awsId = "AKIAVODOQPPGRZGE7CMG";
 	 
-	  @Value("$E2VrlOEf5TAldvCDyADODzStg6m4r83DhaX6fy1q")
-	  private String awsKey;
+	  private String awsKey = "E2VrlOEf5TAldvCDyADODzStg6m4r83DhaX6fy1q";
 	  
-	  @Value("$US EAST(Ohio)")
-	  private String region;
+	  private String region = "US EAST(Ohio)";
 	 
 	  @Bean
 	  public AmazonS3 s3client() {
