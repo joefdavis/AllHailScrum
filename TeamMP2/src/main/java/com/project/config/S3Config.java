@@ -16,7 +16,7 @@ public class S3Config {
 	 
 	  private String awsKey = "E2VrlOEf5TAldvCDyADODzStg6m4r83DhaX6fy1q";
 	  
-	  private String region = "US EAST(Ohio)";
+	  private String region = "us-east-2";
 	 
 	  @Bean
 	  public AmazonS3 s3client() {

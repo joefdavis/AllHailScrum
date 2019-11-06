@@ -25,8 +25,8 @@ public class PictureController {
   S3Services s3Services;
   //UPLOAD
     @PostMapping("/upload")
-    public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
-      String username = file.getOriginalFilename();  //TODO replace this with session
+    public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @PathVariable String name) {
+      String username = name;  //TODO replace this with session
     s3Services.uploadFile(username, file);
     return "Upload Successfully -> KeyName = " + username;
     }    
