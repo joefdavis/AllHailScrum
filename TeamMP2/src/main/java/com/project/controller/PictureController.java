@@ -17,21 +17,24 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.service.S3Services;
  
  
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class PictureController {
   
-  @Autowired
+  public PictureController() {
+	  System.out.println("picture");
+	}
+@Autowired
   S3Services s3Services;
   //UPLOAD
-    @PostMapping("/upload")
+    @PostMapping("/upload.app")
     public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
       String username = "name";  //TODO replace this with session
     s3Services.uploadFile(username, file);
     return "Upload Successfully -> KeyName = " + username;
     }    
     //DOWNLOAD
-    @GetMapping("/getProfilePic")
+    @GetMapping("/getProfilePic.app")
     public ResponseEntity<byte[]> downloadFile(@PathVariable String username) {
       ByteArrayOutputStream downloadInputStream = s3Services.downloadFile(username);
     

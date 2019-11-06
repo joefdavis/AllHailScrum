@@ -17,6 +17,7 @@ public class CorsFilter extends HttpFilter{
         
         private void addCorsHeaders(HttpServletResponse res) {
             res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+//            res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Access-Control-Allow-Headers", "content-type");
         }
     }
