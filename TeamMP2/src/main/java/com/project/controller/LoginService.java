@@ -1,4 +1,5 @@
 package com.project.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,25 @@ public class LoginService {
    }
     
     public void InsertLikes(Likes likes) {
+//    	List<Likes> list= new ArrayList<>();
+//    	list=br.getAllLikes();
+    	for(Likes l : br.getAllLikes()) {
+    		if((likes.getUsername().equals(l.getUsername()) && likes.getLikescool().getId()==l.getLikescool().getId())) {
+    			System.out.println("like already exists");
+    			return;
+    		}
+    	}
         br.InsertLike(likes);
    }
     
     public void InsertLikesC(LikesC likesc) {
+    	for(LikesC l : br.getAllLikesC()) {
+    		if((likesc.getUsername().equals(l.getUsername()) && likesc.getLikesc().getId()==l.getLikesc().getId())) {
+    			System.out.println("like already exists");
+    			return;
+    		}
+    	}
+    	
         br.InsertLikeC(likesc);
    }
     

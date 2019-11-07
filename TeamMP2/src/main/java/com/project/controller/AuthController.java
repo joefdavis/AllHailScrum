@@ -17,7 +17,7 @@ import com.project.pojo.Users;
 @CrossOrigin(origins="*")
 @RequestMapping(value="/auth")
 public class AuthController {
-	 Logger LOGGER=LoggerFactory.getLogger(AuthController.class);
+	private static Logger LOGGER=LoggerFactory.getLogger(AuthController.class);
     private LoginService ls;
     @PostMapping(value="/login.app")
     public @ResponseBody Users login(@RequestBody Users user) {

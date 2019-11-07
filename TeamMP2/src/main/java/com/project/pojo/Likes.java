@@ -34,7 +34,25 @@ public class Likes {
      
      
      
-     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    
+
+
+
+
+
+	public Posts getLikestousernamep() {
+		return likestousernamep;
+	}
+
+
+
+
+
+
+	public void setLikestousernamep(Posts likestousernamep) {
+		this.likestousernamep = likestousernamep;
+	}
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
      @JoinColumn(name= "social_username")
      private Posts likestousernamep;
     
@@ -71,7 +89,19 @@ public class Likes {
         this.username = username;
     } 
     
-    
+    public Posts getLikescool() {
+		return likescool;
+	}
+
+
+
+
+
+
+	public void setLikescool(Posts likescool) {
+		this.likescool = likescool;
+	}
+
     
 }
 

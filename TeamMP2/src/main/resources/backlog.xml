@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
  
-    <property name="LOG_LOCATION" value="C:\Users\joefd\Desktop\my_git_repos\AllHailScrum\TeamMP2\src\main\resources\log.txt" />
+    <property name="LOG_LOCATION" value="C:\Users\joefd\Documents\logger.txt" />
  
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,12 +10,12 @@
     </appender>
  
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <File>{LOG_LOCATION}/mylog.log</File>
+        <File>C:\Users\joefd\Documents\logger.txt</File>
         <encoder>
              <pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_LOCATION}/archived/mylog-%d{yyyy-MM-dd}.%i.log
+            <fileNamePattern>$resources/log-%d{yyyy-MM-dd}.%i.txt
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -31,8 +31,8 @@
  
     <!-- Application logs at trace level -->
     <logger name="com.howtodoinjava" level="trace" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
  
 </configuration>

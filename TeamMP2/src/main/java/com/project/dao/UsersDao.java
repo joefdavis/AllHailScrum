@@ -76,6 +76,19 @@ public class UsersDao  {
         return ses.createQuery(hql, Users.class).list();
     }
     
+  public List<Likes> getAllLikes(){
+        
+        Session ses = sesFact.getCurrentSession();  
+        String hql = "from Likes";
+        return ses.createQuery(hql, Likes.class).list();
+    }
+    
+  public List<LikesC> getAllLikesC(){
+      
+      Session ses = sesFact.getCurrentSession();  
+      String hql = "from LikesC";
+      return ses.createQuery(hql, LikesC.class).list();
+  }
 
     
     //////////////////////////////////////////////////////////////////////////////////////////////

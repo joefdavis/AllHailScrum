@@ -74,6 +74,38 @@ public class LikesC {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+
+
+
+	public Comments getLikesc() {
+		return likesc;
+	}
+
+
+
+
+
+	public void setLikesc(Comments likesc) {
+		this.likesc = likesc;
+	}
+
+
+
+
+
+	public Users getLikescusers() {
+		return likescusers;
+	}
+
+
+
+
+
+	public void setLikescusers(Users likescusers) {
+		this.likescusers = likescusers;
+	}
     
     
     
