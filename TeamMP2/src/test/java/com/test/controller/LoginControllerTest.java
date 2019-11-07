@@ -16,13 +16,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.project.controller.LoginController;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration(value = "/WEB-INF/applicationcontext.xml")
+@WebAppConfiguration
 public class LoginControllerTest {
 	@Autowired
 	private WebApplicationContext whack;
-	private MockMvc mvc = MockMvcBuilders.webAppContextSetup(whack).build();
 	
+	private MockMvc mvc;
+	private LoginController lc = new LoginController();
 	@Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -32,6 +35,11 @@ public class LoginControllerTest {
 	@Test
 	public void allUsersTest() throws Exception {
 		this.mvc.perform(get("/users/getAll.app")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void nonSpring() {
+		assertNotNull(lc.getAll());
 	}
 
 }
