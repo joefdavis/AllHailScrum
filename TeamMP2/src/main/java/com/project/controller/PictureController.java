@@ -31,10 +31,10 @@ public class PictureController {
   S3Services s3Services;
   //UPLOAD
     @PostMapping("/upload.app")
-    public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
-      String username = imageName("name");  //TODO replace this with session
-    s3Services.uploadFile(username, file);
-    return "Upload Successfully -> KeyName = " + username;
+    public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) {
+      String name = imageName(username);  //TODO replace this with session
+    s3Services.uploadFile(name, file);
+    return "Upload Successfully -> KeyName = " + name;
     }
     
     public String postPicNameGenerator() {
