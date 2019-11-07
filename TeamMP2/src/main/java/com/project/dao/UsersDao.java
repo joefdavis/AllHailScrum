@@ -76,6 +76,7 @@ public class UsersDao  {
         return ses.createQuery(hql, Users.class).list();
     }
     
+
     
     //////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -120,7 +121,7 @@ public class UsersDao  {
         
         Session ses = sesFact.getCurrentSession();  
         
-        return ses.createQuery("from Posts ", Posts.class).list();
+        return ses.createQuery("from Posts order by time desc", Posts.class).list();
     }
     //get posts by username
     public List<Posts> getPostsByUsername(Posts p){
@@ -132,7 +133,9 @@ public class UsersDao  {
     
     //get user by username
     public Users getUserByUsername(String name) {
+    	System.out.println("we in the dao");
         Session ses = sesFact.getCurrentSession();
+        System.out.println("we in teh dao bitchessss");
         return ses.createQuery("from Users where username like ?1 ", Users.class).setParameter(1, name).getSingleResult();
     }
     

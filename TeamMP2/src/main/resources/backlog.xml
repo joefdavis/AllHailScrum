@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
  
-    <property name="LOG_LOCATION" value="c:/temp" />
+    <property name="LOG_LOCATION" value="C:\Users\joefd\Desktop\my_git_repos\AllHailScrum\TeamMP2\src\main\resources\log.txt" />
  
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
+            <pattern></pattern>
         </encoder>
     </appender>
  
@@ -23,8 +23,8 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
     </appender> 
- 
-    <root level="INFO">
+    
+      <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
