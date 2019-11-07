@@ -2,6 +2,7 @@ package com.project.pojo;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table (name = "posts")
 public class Posts {
@@ -61,7 +63,7 @@ public class Posts {
     
     
     
-    
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name= "social_username")
     private Users home;
@@ -69,11 +71,11 @@ public class Posts {
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "cool",cascade = CascadeType.ALL, fetch=FetchType.LAZY )
     private Set<Comments> comments = new HashSet<>();
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "likescool",cascade = CascadeType.ALL, fetch=FetchType.LAZY )
     private Set<Likes> likes = new HashSet<>();
     

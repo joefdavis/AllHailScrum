@@ -109,6 +109,13 @@ public class LoginController {
         return likesc;
     }
     
+    @PostMapping(value="/updateuser.app")
+	public @ResponseBody Users update(@RequestBody Users up) {
+    	System.out.println(up);
+    	login.UpdateUser(up);
+    	return up;
+    }
+    
     public void Logger(String name) {
     	 LOGGER.info("we have a logger!!! and they are " + name);
     }

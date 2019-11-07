@@ -30,6 +30,13 @@ public class LoginService {
         return br.getUsernameValue(Username);
     }
     
+   
+   
+   
+   public void UpdateUser(Users update) {
+       br.UpdateUsername(update);
+   }
+    
     public void InsertUser(Users b) {
     	System.out.println("service me mommy");
     	System.out.println(b);
