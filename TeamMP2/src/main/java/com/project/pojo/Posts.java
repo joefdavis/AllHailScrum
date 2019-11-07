@@ -24,13 +24,17 @@ public class Posts {
     private LocalDateTime time;
     
     
-    public Posts(LocalDateTime time, String description, String post) {
+    public Posts(Users home, LocalDateTime time, String description, String post) {
         super();
         this.time = time;
         this.description = description;
         this.post = post;
+        this.home = home;
     }
     
+    public Posts() {
+        
+    }
     
     
     
@@ -101,6 +105,7 @@ public class Posts {
     public void setTime(LocalDateTime time) {
         this.time = time;
     }
+ 
     public String getDescription() {
         return description;
     }

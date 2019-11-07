@@ -48,7 +48,7 @@ public class LoginController {
 
     	
         System.out.println(u);
-       
+        LOGGER.info("we have a logger!!! and they are " + u.getUsername());
       Users newu=login.getUsernameValue(u.getUsername());
        System.out.println("raptar motherrrr FUUUUUUU");
        if(u.getPassword().equals(newu.getPassword())) {
@@ -109,7 +109,9 @@ public class LoginController {
         return likesc;
     }
     
-    
+    public void Logger(String name) {
+    	 LOGGER.info("we have a logger!!! and they are " + name);
+    }
     public LoginService getLogin() {
         return login;
     }

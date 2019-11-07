@@ -27,15 +27,15 @@ public class Users {
     
     
 //    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "social_id" , updatable = false, nullable = false)
-//
-    private int id;
+    
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column (name = "social_id" , updatable = false, nullable = false)
+////
+//    private int id;
     
     
     
-//  @Id
+  @Id
 //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "social_username", unique = true)
     private String username;
@@ -102,12 +102,12 @@ public class Users {
     
     
     
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
     
     
     
@@ -119,7 +119,7 @@ public class Users {
     @Override
     public String toString() {
         return "Users [username=" + username + ", password=" + password + ", email=" + email + ", description="
-                + description + ", profile=" + profile + ", brithday=" + brithday + ", id=" + id + "]";
+                + description + ", profile=" + profile + ", brithday=" + brithday  + "]";
     }
     public String getUsername() {
         return username;

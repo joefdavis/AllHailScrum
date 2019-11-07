@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.pojo.Users;
 
+
 @Controller
 @CrossOrigin(origins="*")
 @RequestMapping(value="/auth")
 public class AuthController {
+	 Logger LOGGER=LoggerFactory.getLogger(AuthController.class);
     private LoginService ls;
     @PostMapping(value="/login.app")
     public @ResponseBody Users login(@RequestBody Users user) {
@@ -27,6 +31,8 @@ public class AuthController {
             if(u.getUsername().equals(user.getUsername())) {
                 System.out.println("inside if statement of login auth controller");
                 System.out.println(u);
+                System.out.println(u.getUsername());
+                LOGGER.info("we have a logger!!! and they are " + u.getUsername());
                 return u;
             }
         }
