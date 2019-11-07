@@ -13,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
@@ -26,12 +28,14 @@ public class S3ServicesImpl implements S3Services {
 	@Autowired
 	private AmazonS3 s3client;
 
-	private String bucketName = "mothra.co";
+	private String bucketProfile = "mothra.co/Profile";
+	
+	private String bucketPost = "mothra.co/Posts";
 
 	@Override
 	public ByteArrayOutputStream downloadFile(String keyName) {
 		try {
-			S3Object s3object = s3client.getObject(new GetObjectRequest(bucketName, keyName));
+			S3Object s3object = s3client.getObject(new GetObjectRequest(bucketProfile, keyName));
 
 			InputStream is = s3object.getObjectContent();
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -57,7 +61,8 @@ public class S3ServicesImpl implements S3Services {
 		try {
 			ObjectMetadata metadata = new ObjectMetadata();
 			metadata.setContentLength(file.getSize());
-			s3client.putObject(bucketName, keyName, file.getInputStream(), metadata);
+			s3client.putObject(new PutObjectRequest
+					(bucketProfile, keyName, file.getInputStream(), metadata).withCannedAcl(CannedAccessControlList.PublicRead));
 		} catch (IOException ioe) {
 		} catch (AmazonServiceException ase) {
 			throw ase;
@@ -68,7 +73,7 @@ public class S3ServicesImpl implements S3Services {
 
 	public List<String> listFiles() {
 
-		ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucketName);
+		ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucketProfile);
 		// .withPrefix("test" + "/");
 
 		List<String> keys = new ArrayList<>();
