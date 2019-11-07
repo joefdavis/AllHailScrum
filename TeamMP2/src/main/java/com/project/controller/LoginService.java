@@ -75,6 +75,9 @@ public class LoginService {
         br.InsertLikeC(likesc);
    }
     
+    public Users getUser(String name) {
+    	return br.getUserByUsername(name);
+    }
     
     @Autowired
     public void setBr(UsersDao br) {
