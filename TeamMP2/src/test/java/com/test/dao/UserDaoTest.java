@@ -23,7 +23,8 @@ public class UserDaoTest {
 	}
 	@Test
 	public void testUsernameInfo() {
-		assertEquals("Voltsung", ud.getUserByUsername("Voltsung").getUsername());
+		ud.InsertUserInfo(testUser);
+		assertEquals("Biggs", ud.getUserByUsername("Biggs").getUsername());
 	}
 	@Test
 	public void testUsersList() {
