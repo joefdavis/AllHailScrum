@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
+import com.project.pojo.Comments;
+import com.project.pojo.Likes;
+import com.project.pojo.LikesC;
+import com.project.pojo.Posts;
 import com.project.pojo.Users;
 @Controller
 @RequestMapping(value="/users")
@@ -28,9 +30,12 @@ public class LoginController {
     public ResponseEntity<List<Users>> getAll(){
         return new ResponseEntity<List<Users>>(login.getAll(), HttpStatus.OK);
     }
+    //add get all posts
     
-    
-    
+    @GetMapping(value="getAllPosts.app")
+    public ResponseEntity<List<Posts>> getAllPosts(){
+        return new ResponseEntity<List<Posts>>(login.getAllPosts(), HttpStatus.OK);
+    }
     
     
     
@@ -66,7 +71,43 @@ public class LoginController {
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////Inserting Post////////////////////////////////////////////////////////////
+    @PostMapping(value="/userposts.app")
+    public @ResponseBody Posts insert(@RequestBody Posts post) {
+        System.out.println(post);
+        login.InsertPost(post);
+        return post;
+    }
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////Inserting Comments////////////////////////////////////////////////////////////
+    @PostMapping(value="/usercomments.app")
+    public @ResponseBody Comments insert(@RequestBody Comments comments) {
+        System.out.println(comments);
+        login.InsertComments(comments);
+        return comments;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////Inserting likes////////////////////////////////////////////////////////////
+    @PostMapping(value="/userlikes.app")
+    public @ResponseBody Likes insert(@RequestBody Likes likes) {
+        System.out.println(likes);
+        login.InsertLikes(likes);
+        return likes;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////Inserting LikesC////////////////////////////////////////////////////////////
+    @PostMapping(value="/userlikesc.app")
+    public @ResponseBody LikesC insert(@RequestBody LikesC likesc) {
+        System.out.println(likesc);
+        login.InsertLikesC(likesc);
+        return likesc;
+    }
     
     
     public LoginService getLogin() {

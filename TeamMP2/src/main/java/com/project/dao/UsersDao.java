@@ -76,6 +76,7 @@ public class UsersDao  {
         return ses.createQuery(hql, Users.class).list();
     }
     
+
     
     //////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -120,7 +121,7 @@ public class UsersDao  {
         
         Session ses = sesFact.getCurrentSession();  
         
-        return ses.createQuery("from Posts ", Posts.class).list();
+        return ses.createQuery("from Posts order by time desc", Posts.class).list();
     }
     //get posts by username
     public List<Posts> getPostsByUsername(Posts p){

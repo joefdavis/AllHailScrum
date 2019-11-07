@@ -3,6 +3,7 @@ package com.project.controller;
 import java.io.ByteArrayOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+
+
+
+
+
 
 import com.project.service.S3Services;
  
@@ -30,8 +38,19 @@ public class PictureController {
     s3Services.uploadFile(username, file);
     return "Upload Successfully -> KeyName = " + username;
     }    
-    //DOWNLOAD
+  //DOWNLOAD PROFILE
     @GetMapping("/getProfilePic")
+    public ResponseEntity<byte[]> downloadProfile() {
+        String username = "name"; //TODO replace this with session
+      ByteArrayOutputStream downloadInputStream = s3Services.downloadFile(username);
+    
+      return ResponseEntity.ok()
+            .contentType(contentType(username))
+            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + username + "\"")
+            .body(downloadInputStream.toByteArray());
+    }
+    //DOWNLOAD POST
+    @GetMapping("/getPostPic")
     public ResponseEntity<byte[]> downloadFile(@PathVariable String username) {
       ByteArrayOutputStream downloadInputStream = s3Services.downloadFile(username);
     
@@ -40,7 +59,7 @@ public class PictureController {
             .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + username + "\"")
             .body(downloadInputStream.toByteArray());
     }
-    //GET IMAGE TYPE
+  //GET IMAGE TYPE
     private MediaType contentType(String username) {
       String[] arr = username.split("\\.");
       String type = arr[arr.length-1];
@@ -50,4 +69,16 @@ public class PictureController {
         default: return MediaType.APPLICATION_OCTET_STREAM;
       }
     }
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver() 
+    {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(20848820);
+        return multipartResolver;
+    }
+
+
+
+
+
 }
