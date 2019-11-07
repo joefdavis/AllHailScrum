@@ -1,5 +1,7 @@
 package com.project.controller;
+import java.io.File;
 import java.util.List;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dao.UsersDao;
 import com.project.pojo.Comments;
 import com.project.pojo.Likes;
 import com.project.pojo.LikesC;
@@ -72,11 +76,34 @@ public class LoginController {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////Inserting Post////////////////////////////////////////////////////////////
-    @PostMapping(value="/userposts.app")
-    public @ResponseBody Posts insert(@RequestBody Posts post) {
+    @PostMapping(value="/userPosts.app")
+    public @ResponseBody Posts insert(@RequestBody Posts post, MultipartFile file) {
+    	PictureController pc = new PictureController();
+    	UsersDao ld = new UsersDao();
+    	String name = postPicNameGenerator();
+    	if(file != null) {
+    		pc.uploadPostPic(file, post.getPost());
+    	}
         System.out.println(post);
         login.InsertPost(post);
         return post;
+    }
+    
+    public String postPicNameGenerator() {
+        int leftLimit = 97;
+        int rightLimit = 122;
+        int targetStringLength = 15;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        buffer.append("Posts/");
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int) 
+              (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String generatedString = buffer.toString();
+     
+        return generatedString;
     }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////

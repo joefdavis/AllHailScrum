@@ -37,23 +37,6 @@ public class PictureController {
     return "Upload Successfully -> KeyName = " + username;
     }
     
-    public String postPicNameGenerator() {
-        int leftLimit = 97;
-        int rightLimit = 122;
-        int targetStringLength = 15;
-        Random random = new Random();
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-        buffer.append("Posts/");
-        for (int i = 0; i < targetStringLength; i++) {
-            int randomLimitedInt = leftLimit + (int) 
-              (random.nextFloat() * (rightLimit - leftLimit + 1));
-            buffer.append((char) randomLimitedInt);
-        }
-        String generatedString = buffer.toString();
-     
-        return generatedString;
-    }
-    
     public String uploadPostPic(MultipartFile file, String name) {
     s3Services.uploadFile(name, file);
     return "Upload Successfully -> KeyName = " + name;
