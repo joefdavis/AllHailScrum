@@ -1,4 +1,5 @@
 package com.project.controller;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -74,6 +75,7 @@ public class LoginController {
     /////////////////////////////////Inserting Post////////////////////////////////////////////////////////////
     @PostMapping(value="/userposts.app")
     public @ResponseBody Posts insert(@RequestBody Posts post) {
+    	post.setTime(LocalDateTime.now());
         System.out.println(post);
         login.InsertPost(post);
         return post;
