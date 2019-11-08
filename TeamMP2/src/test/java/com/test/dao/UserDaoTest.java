@@ -15,7 +15,7 @@ import com.project.pojo.Users;
 public class UserDaoTest {
 	UsersDao ud = new UsersDao();
 	Users testUser = new Users("Biggs", "Wedge", "email", "description", "profile", Date.valueOf(LocalDate.now()));
-	Posts p = new Posts(LocalDateTime.now(), "Working on testing things", "Working on testing things");
+	Posts p = new Posts(testUser, LocalDateTime.now(), "Working on testing things", "Working on testing things");
 	//USERS
 	@Test
 	public void testUserDaoExistance() {
