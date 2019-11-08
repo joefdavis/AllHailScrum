@@ -38,9 +38,9 @@ public class LoginController {
         return new ResponseEntity<List<Posts>>(login.getAllPosts(), HttpStatus.OK);
     }
     
-    @GetMapping(value="getUser.app")
-    public ResponseEntity<Users> getUser(String name){
-        return new ResponseEntity<Users>(login.getUser(name), HttpStatus.OK);
+    @PostMapping(value="getUser.app")
+    public Users getUser(String name){
+        return login.getUser(name);
     }
     
     
